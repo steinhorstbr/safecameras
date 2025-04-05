@@ -1,0 +1,22 @@
+fluxversion: '3.8'
+
+services:
+  stream_server:
+    build: ./flux-service
+    container_name: stream_server
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./flux-service/recordings:/var/www/recordings
+    environment:
+      - OUTPUT_DIR=/var/www/recordings
+    restart: always
+
+  stream_manager:
+    build: ./manager-service
+    container_name: stream_manager
+    ports:
+      - "5001:5001"
+    depends_on:
+      - stream_server
+    restart: always

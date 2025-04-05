@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  ome:
+    image: airensoft/ovenmediaengine:latest
+    container_name: ome
+    restart: always
+    ports:
+      - "1935:1935"  # RTMP
+      - "4000:4000"  # HTTP API
+      - "3333:3333"  # WebRTC (opcional)
+      - "3478:3478"  # STUN (opcional)
+    volumes:
+      - ./logs:/var/log/ovenmediaengine
+      - ./config:/etc/ovenmediaengine
+      - ./recordings:/var/www/ome/recordings
+    environment:
+      - OME_HOST=186.233.4.2
+    networks:
+      - ome-network
+
+networks:
+  ome-network:
+    driver: bridge

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Stream Manager</h1>
+
+        <!-- Formulário para adicionar um stream -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Adicionar Stream</h5>
+                <form id="add-stream-form">
+                    <div class="mb-3">
+                        <label for="stream-key" class="form-label">Stream Key</label>
+                        <input type="text" class="form-control" id="stream-key" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-url" class="form-label">Input URL (RTSP/RTMP)</label>
+                        <input type="text" class="form-control" id="input-url" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Lista de streams em execução -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Streams em Execução</h5>
+                <button id="refresh-streams" class="btn btn-secondary mb-3">Atualizar Lista</button>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Stream Key</th>
+                            <th>Input URL</th>
+                            <th>Gravação</th>
+                            <th>Visualização</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="streams-table-body">
+                        <!-- Streams serão carregados aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
